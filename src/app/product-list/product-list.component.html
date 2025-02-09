@@ -1,0 +1,90 @@
+<app-alert [(notification)]="notification"></app-alert>
+<ngx-loading
+    [show]="loading"
+    [config]="{ backdropBorderRadius: '3px' }"
+  ></ngx-loading>
+<section class="innovacion optimizar tecnologia">
+    <div class="container">
+      <div class="section-title">
+        <a href="#0">Show Filters</a>
+        <div class="optimizar-title optimizar-title-two">
+          <span>Filter By Category</span>
+          <select class="select-img select-item" [(ngModel)]="categoryId" (change)="selecteCategory()">
+            <option value="">Select Category</option>
+            <option *ngFor="let item of categoryListData" value="{{item}}"> {{item}}</option>
+          </select>
+        </div>
+        <div class="optimizar-title">
+          <span>Sort By</span>
+          <select class="select-img"  [(ngModel)]="priceId" (change)="sortArray()">
+            <option value="0">Select Sort</option>
+            <option value="1">price high to low</option>
+            <option value="2">Price low to high</option>
+          </select>
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-lg-4 col-6" *ngFor="let item of productDetail" >
+            <div class="item" >
+              <div class="para">
+                <img [src]="item.image" alt="img">
+                <a class="btn style-btn style-two" id="openModalButton" href="#0" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="showProduct(item)">Show Product</a>
+
+              </div>
+              
+              <h4>{{item.category | titlecase}} </h4>
+              <p>{{item.title | titlecase}}</p>
+              <strong>{{item.price}}</strong>
+            </div>
+          </div>
+         
+        </div>
+       <div class="btn-block">
+        <a class="btn" href="#0" (click)="loadMore()">Load More</a>
+      </div>
+    </div>
+  </section>
+  
+
+  
+  
+  
+
+  
+  
+  <!-- Back to top button -->
+  <a id="button"></a>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{productById?.title}}</h5>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-8 col-12" >
+            <div class="item" >
+              <div class="para">
+                <img [src]="productById?.image" alt="img">
+              </div>
+              
+              <h4>RS {{productById?.price}} </h4>
+              <p>{{productById?.description}}</p>
+              <strong></strong>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
